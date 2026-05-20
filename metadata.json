@@ -1,0 +1,6 @@
+{
+  "name": "Rangan Das - Liquid Terminal Portfolio",
+  "description": "An immersive, bioluminescent portfolio redesign for Rangan Das featuring a Liquid Terminal aesthetic with interactive constellation maps, cinematic boots, and AI-powered interaction.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
