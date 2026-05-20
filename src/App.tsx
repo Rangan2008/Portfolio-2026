@@ -103,7 +103,7 @@ export default function App() {
 
       <main
         className="relative"
-        style={{ opacity: isBooted ? 1 : 0, transition: 'opacity 1s ease' }}
+        style={{ opacity: isBooted ? 1 : 0, transition: 'opacity 1s ease', visibility: isBooted ? 'visible' : 'hidden' }}
       >
 
         {/* Hero Section */}
@@ -131,8 +131,8 @@ export default function App() {
             <div className="space-y-10">
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 }}
+                animate={isBooted ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                transition={{ delay: 0.2 }}
                 className="flex flex-col md:flex-row md:items-center gap-3 border-b border-teal-500/20 pb-6 w-full"
               >
                 <div className="flex flex-col min-w-0">
@@ -153,8 +153,8 @@ export default function App() {
               <div className="space-y-6">
                 <motion.h1
                   initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6 }}
+                  animate={isBooted ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                  transition={{ delay: 0.3 }}
                   className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter"
                 >
                   Building the <span className="text-teal-400 glow-text italic">Digital</span> Future.
@@ -162,8 +162,8 @@ export default function App() {
 
                 <motion.p
                   initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.7 }}
+                  animate={isBooted ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                  transition={{ delay: 0.4 }}
                   className="text-slate-400 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed"
                 >
                   Hi, I'm <span className="text-white font-semibold">Rangan Das</span>. A high-performance Full Stack Developer building scalable architectures and immersive user experiences with code that flows.
@@ -172,8 +172,8 @@ export default function App() {
 
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.8 }}
+                animate={isBooted ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                transition={{ delay: 0.5 }}
                 className="flex flex-wrap gap-4 pt-4"
               >
                 <button
