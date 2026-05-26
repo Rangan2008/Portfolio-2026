@@ -215,7 +215,9 @@ export const ACHIEVEMENTS = [
     icon: Trophy,
     date: "2026",
     featured: true,
-    type: "competitive"
+    type: "competitive",
+    credentialImage: "/credentials/tcs-codevita-rank-certificate.png",
+    credentialLink: "https://www.tcscodevita.com/"
   },
   {
     title: "HackerRank Gold – C Programming",

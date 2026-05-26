@@ -1,6 +1,7 @@
-import { motion } from 'motion/react';
-import { ExternalLink, Zap } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ExternalLink, Zap, X } from 'lucide-react';
 import { ACHIEVEMENTS } from '../constants';
+import { useState } from 'react';
 
 interface AchievementCardProps {
   achievement: typeof ACHIEVEMENTS[0];
@@ -10,8 +11,10 @@ interface AchievementCardProps {
 
 const FeaturedAchievementCard = ({ achievement }: { achievement: typeof ACHIEVEMENTS[0] }) => {
   const Icon = achievement.icon;
+  const [showCredential, setShowCredential] = useState(false);
   
   return (
+    <>
     <motion.div
       whileInView={{ y: 0, opacity: 1 }}
       initial={{ y: 20, opacity: 0 }}
@@ -89,7 +92,9 @@ const FeaturedAchievementCard = ({ achievement }: { achievement: typeof ACHIEVEM
           {/* Meta Info */}
           <div className="flex items-center justify-between pt-4 border-t border-[#00e5cc]/10">
             <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500">Achieved in {achievement.date}</span>
-            <button className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#00e5cc]/10 border border-[#00e5cc]/30 text-[#00e5cc] font-bold text-[11px] uppercase tracking-wider hover:bg-[#00e5cc]/20 hover:border-[#00e5cc]/60 transition-all duration-200 group hover:shadow-[0_0_15px_#00e5cc]">
+            <button 
+              onClick={() => setShowCredential(true)}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#00e5cc]/10 border border-[#00e5cc]/30 text-[#00e5cc] font-bold text-[11px] uppercase tracking-wider hover:bg-[#00e5cc]/20 hover:border-[#00e5cc]/60 transition-all duration-200 group hover:shadow-[0_0_15px_#00e5cc]">
               <ExternalLink size={14} />
               View Credential
             </button>
@@ -100,6 +105,125 @@ const FeaturedAchievementCard = ({ achievement }: { achievement: typeof ACHIEVEM
         <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#00e5cc]/5 blur-[100px] rounded-full pointer-events-none group-hover:bg-[#00e5cc]/10 transition-colors duration-300" />
       </div>
     </motion.div>
+
+    {/* Credential Modal */}
+    <AnimatePresence>
+      {showCredential && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setShowCredential(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-[#0d1829] border-2 border-[#00e5cc]/30 rounded-3xl p-8 md:p-12 max-w-3xl w-full max-h-[90vh] overflow-y-auto relative"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowCredential(false)}
+              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#00e5cc]/10 border border-[#00e5cc]/30 flex items-center justify-center text-[#00e5cc] hover:bg-[#00e5cc]/20 transition-all"
+            >
+              <X size={20} />
+            </button>
+
+            {/* Credential Content */}
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h2 className="text-3xl md:text-4xl font-black text-[#00e5cc]">
+                  {achievement.title}
+                </h2>
+                <p className="text-slate-400">Rank Certificate</p>
+              </div>
+
+              {/* Rank Highlight */}
+              {achievement.rank && (
+                <div className="p-8 bg-gradient-to-r from-[#fbbf24]/10 to-[#00e5cc]/10 border border-[#fbbf24]/20 rounded-2xl space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <p className="text-slate-500 text-sm font-mono uppercase tracking-wider mb-2">Global Rank</p>
+                      <p className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-[#00e5cc]">
+                        #{achievement.rank.toLocaleString()}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-slate-500 text-sm font-mono uppercase tracking-wider mb-2">Competition</p>
+                      <p className="text-xl md:text-2xl font-bold text-slate-200">
+                        {achievement.title.split(' — ')[0] || achievement.title}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-slate-500 text-sm font-mono uppercase tracking-wider mb-2">Participants</p>
+                      <p className="text-xl md:text-2xl font-bold text-slate-200">
+                        {achievement.totalParticipants?.toLocaleString() || 'N/A'}+
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Credential Image - if available */}
+              {achievement.credentialImage && (
+                <div className="rounded-2xl border border-[#00e5cc]/20 overflow-hidden bg-[#000] flex items-center justify-center min-h-[300px]">
+                  <img
+                    src={achievement.credentialImage}
+                    alt={`${achievement.title} Certificate`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              )}
+
+              {/* Description */}
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-sm font-mono uppercase tracking-widest text-[#00e5cc] mb-2">About This Achievement</h3>
+                  <p className="text-slate-300 leading-relaxed">
+                    {achievement.description}
+                  </p>
+                </div>
+
+                {/* Tags */}
+                {achievement.tags && (
+                  <div className="flex flex-wrap gap-2 pt-4">
+                    {achievement.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-[#00e5cc]/10 border border-[#00e5cc]/30 text-[#00e5cc]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Date */}
+              <div className="text-sm text-slate-500 font-mono">
+                Achieved in {achievement.date}
+              </div>
+
+              {/* Action Button */}
+              {achievement.credentialLink && (
+                <a
+                  href={achievement.credentialLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#00e5cc] text-[#060b14] font-bold text-sm uppercase tracking-wider hover:bg-[#00e5cc]/90 transition-all mt-4"
+                >
+                  <ExternalLink size={16} />
+                  Visit Official Competition
+                </a>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   );
 };
 
