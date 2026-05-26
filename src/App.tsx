@@ -23,12 +23,11 @@ import { ProjectCard } from "./components/ProjectCard";
 import { ExperienceTimeline } from "./components/ExperienceTimeline";
 import { ChatWidget } from "./components/ChatWidget";
 import { CursorTrail } from "./components/CursorTrail";
+import { AchievementsSection } from "./components/AchievementsSection";
+import { CertificationsSection } from "./components/CertificationsSection";
 import {
   PERSONAL_INFO,
-  PROJECTS,
-  ACHIEVEMENTS,
-  FEATURED_CERTS,
-  SUPPORTING_CERTS
+  PROJECTS
 } from "./constants";
 
 // Module-level constant — reference-stable forever, never triggers useEffect re-run
@@ -460,173 +459,11 @@ export default function App() {
           </div>
         </section>
 
-        {/* Achievements Section */}
-        <section className="py-32 px-6 md:px-12 lg:px-24 border-t border-teal-500/5">
-          <div className="max-w-6xl mx-auto space-y-16">
-            <div className="text-center space-y-4">
-              <span className="text-teal-400 font-mono text-[10px] uppercase tracking-[0.4em]">Section_05 // Milestones</span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Achievements</h2>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Featured Achievement */}
-              <motion.div
-                whileInView={{ y: 0, opacity: 1 }}
-                initial={{ y: 20, opacity: 0 }}
-                viewport={{ once: true }}
-                className="lg:col-span-2 p-6 md:p-10 bg-[#0d1829] border border-teal-500/10 rounded-3xl flex flex-col justify-center gap-6 group hover:border-teal-500/30 transition-all relative overflow-hidden"
-              >
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-teal-400/0 group-hover:bg-teal-400 transition-colors shadow-[0_0_15px_#00e5cc]" />
-                <div className="w-16 h-16 rounded-2xl bg-teal-400/5 flex items-center justify-center text-teal-400 group-hover:scale-110 transition-transform">
-                  {(() => { const Icon = ACHIEVEMENTS[0].icon; return <Icon size={40} />; })()}
-                </div>
-                <div className="space-y-4 relative z-10">
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-200">{ACHIEVEMENTS[0].title}</h3>
-                  <p className="text-slate-400 text-base md:text-lg max-w-xl leading-relaxed">{ACHIEVEMENTS[0].description}</p>
-                </div>
-                {/* Subtle background glow */}
-                <div className="absolute top-1/2 -translate-y-1/2 right-10 w-32 h-32 bg-teal-500/10 blur-[80px] rounded-full pointer-events-none group-hover:bg-teal-500/20 transition-colors" />
-              </motion.div>
+        {/* Achievements & Recognition Section */}
+        <AchievementsSection />
 
-              {/* Secondary Achievements Stack */}
-              <div className="lg:col-span-1 flex flex-col gap-8">
-                {ACHIEVEMENTS.slice(1).map((ach, i) => (
-                  <motion.div
-                    key={i}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    initial={{ y: 20, opacity: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 + 0.1 }}
-                    className="flex-1 p-6 md:p-8 bg-[#0d1829] border border-teal-500/10 rounded-3xl flex flex-col justify-center gap-4 group hover:border-teal-500/30 transition-all relative overflow-hidden"
-                  >
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-teal-400/0 group-hover:bg-teal-400 transition-colors shadow-[0_0_10px_#00e5cc]" />
-                    <div className="w-12 h-12 rounded-2xl bg-teal-400/5 flex items-center justify-center text-teal-400 shrink-0 group-hover:scale-110 transition-transform">
-                      <ach.icon size={26} />
-                    </div>
-                    <div className="relative z-10">
-                      <h3 className="text-lg font-bold text-slate-200">{ach.title}</h3>
-                      <p className="text-slate-500 text-sm mt-2 leading-relaxed">{ach.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Certifications Section */}
-        <section className="py-32 px-6 md:px-12 lg:px-24 bg-[#0d1829]/30 border-y border-teal-500/5">
-          <div className="max-w-6xl mx-auto space-y-20">
-
-            {/* Header */}
-            <div className="text-center space-y-4">
-              <span className="text-teal-400 font-mono text-[10px] uppercase tracking-[0.4em]">Section_06 // Credentials</span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Licenses &amp; Certifications</h2>
-              <p className="text-slate-500 max-w-xl mx-auto text-sm">Verified credentials from leading platforms in technology, AI, and software engineering.</p>
-            </div>
-
-            {/* ── TIER 1 : Featured (hero cards) ── */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-px bg-teal-400/40" />
-                <span className="text-teal-400 font-mono text-[9px] uppercase tracking-[0.4em] opacity-70">Featured</span>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {FEATURED_CERTS.map((cert, i) => (
-                  <motion.a
-                    key={cert.name}
-                    href={cert.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    whileInView={{ y: 0, opacity: 1 }}
-                    initial={{ y: 24, opacity: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="group relative flex flex-col justify-between p-7 rounded-3xl border overflow-hidden transition-all duration-300"
-                    style={{
-                      background: `linear-gradient(135deg, #0d1829 60%, ${cert.accent}12 100%)`,
-                      borderColor: `${cert.accent}30`,
-                    }}
-                  >
-                    {/* Accent glow blob */}
-                    <div
-                      className="absolute -top-8 -right-8 w-36 h-36 rounded-full blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity"
-                      style={{ backgroundColor: cert.accent }}
-                    />
-
-                    {/* Top row: issuer + via badge + date */}
-                    <div className="relative z-10">
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span
-                            className="px-2.5 py-1 text-[9px] font-black uppercase tracking-wider rounded-full border"
-                            style={{ color: cert.accent, borderColor: `${cert.accent}40`, background: `${cert.accent}10` }}
-                          >
-                            {cert.issuer}
-                          </span>
-                          <span className="px-2 py-1 text-[9px] font-mono uppercase tracking-wider rounded-full bg-white/5 text-slate-500 border border-white/10">
-                            via {cert.via}
-                          </span>
-                        </div>
-                        <span className="text-[10px] font-mono text-slate-600 shrink-0">{cert.date}</span>
-                      </div>
-
-                      {/* Name */}
-                      <h3
-                        className="text-base md:text-lg font-bold leading-snug mb-6 group-hover:opacity-90 transition-opacity"
-                        style={{ color: '#e2e8f0' }}
-                      >
-                        {cert.name}
-                      </h3>
-                    </div>
-
-                    {/* CTA button */}
-                    <div
-                      className="relative z-10 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-[11px] font-bold uppercase tracking-widest border transition-all duration-200 group-hover:shadow-[0_0_14px_-2px_currentColor] w-fit"
-                      style={{ color: cert.accent, borderColor: `${cert.accent}50`, background: `${cert.accent}10` }}
-                    >
-                      <ExternalLink size={12} />
-                      Show Credential
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-
-            {/* ── TIER 2 : Supporting (compact row) ── */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-px bg-slate-700" />
-                <span className="text-slate-600 font-mono text-[9px] uppercase tracking-[0.4em]">Additional</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-                {SUPPORTING_CERTS.map((cert, i) => (
-                  <motion.a
-                    key={cert.name}
-                    href={cert.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    whileInView={{ y: 0, opacity: 1 }}
-                    initial={{ y: 16, opacity: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.06 }}
-                    className="group flex flex-col gap-2 p-4 bg-[#0d1829]/60 border border-teal-500/8 rounded-2xl hover:border-teal-500/25 hover:bg-[#0d1829] transition-all duration-200"
-                  >
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="text-[9px] font-mono text-teal-400/60 uppercase tracking-wider truncate">{cert.issuer}</span>
-                      <ExternalLink size={10} className="text-teal-400/30 group-hover:text-teal-400/70 transition-colors shrink-0" />
-                    </div>
-                    <p className="text-xs font-medium text-slate-300 leading-snug group-hover:text-slate-100 transition-colors">
-                      {cert.name}
-                    </p>
-                    <span className="text-[9px] font-mono text-slate-700 mt-auto">{cert.date}</span>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </section>
+        {/* Licenses & Certifications Section */}
+        <CertificationsSection />
 
         {/* Contact Section */}
         <section id="contact" className="py-32 px-6 md:px-12 lg:px-24 mb-20 relative">

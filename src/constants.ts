@@ -207,19 +207,55 @@ export const EXPERIENCE = [
 
 export const ACHIEVEMENTS = [
   {
-    title: "3rd Position – 3MST Presentation, eHaCON 2025",
-    description: "Secured 3rd position in 3MST Presentation at eHaCON 2025 (Cybersecurity Centre of Excellence, UEM Kolkata).",
-    icon: Award
+    title: "TCS CodeVita Season 13",
+    rank: 8679,
+    totalParticipants: 300000,
+    description: "Secured a Global Rank of 8679 in TCS CodeVita Season 13, one of the world's largest competitive programming contests, showcasing strong problem-solving and coding skills.",
+    tags: ["Competitive Programming", "Global Rank", "TCS CodeVita"],
+    icon: Trophy,
+    date: "2026",
+    featured: true,
+    type: "competitive"
   },
   {
     title: "HackerRank Gold – C Programming",
     description: "Earned Gold Level in C on HackerRank by solving algorithmic and problem-solving challenges (510+ points), strengthening core programming fundamentals.",
-    icon: Terminal
+    icon: Terminal,
+    date: "2026",
+    featured: false,
+    type: "certification_ranking"
   },
   {
-    title: "TCS CodeVita Season 13 – Global Rank 8679",
-    description: "Secured a global rank of 8679 out of 300,000+ participants in TCS CodeVita Season 13, one of the world's largest programming contests organized by Tata Consultancy Services — demonstrating strong algorithmic thinking and problem-solving ability under competitive pressure.",
-    icon: Trophy
+    title: "3rd Position – 3MST Presentation, eHaCON 2025",
+    description: "Secured 3rd position in 3MST Presentation at eHaCON 2025 (Cybersecurity Centre of Excellence, UEM Kolkata).",
+    icon: Award,
+    date: "2025",
+    featured: false,
+    type: "competition"
+  },
+  {
+    title: "Social Winter of Code Contributor",
+    description: "Active contributor in Social Winter of Code, collaborating on open-source projects and building real-world software solutions.",
+    icon: Code2,
+    date: "2025",
+    featured: false,
+    type: "community"
+  },
+  {
+    title: "Hackolution Hackathon Participant",
+    description: "Participated in Hackolution Hackathon, building innovative solutions under time constraints and collaborating with fellow developers.",
+    icon: Code2,
+    date: "2025",
+    featured: false,
+    type: "hackathon"
+  },
+  {
+    title: "Ninja SlayGround Coding Challenge",
+    description: "Competed in Ninja SlayGround Coding Challenge, demonstrating proficiency in algorithmic problem-solving and real-time coding skills.",
+    icon: Trophy,
+    date: "2025",
+    featured: false,
+    type: "competitive"
   }
 ];
 
@@ -230,23 +266,29 @@ export const FEATURED_CERTS = [
     via: "Coursera",
     date: "Apr 2026",
     link: "https://www.coursera.org/account/accomplishments/records/739MGRD0GQJ9",
-    accent: "#00e5cc"
+    accent: "#00e5cc",
+    category: "AI & Machine Learning",
+    logo: "IBM"
   },
   {
-    name: "Deloitte Australia \u2013 Technology Job Simulation",
+    name: "Deloitte Australia – Technology Job Simulation",
     issuer: "Deloitte",
     via: "Forage",
     date: "Oct 2025",
     link: "https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_ikDpKDeWiwp6Q3Rh7_1760675369646_completion_certificate.pdf",
-    accent: "#3b82f6"
+    accent: "#3b82f6",
+    category: "Professional Simulations",
+    logo: "Deloitte"
   },
   {
-    name: "Tata \u2013 GenAI Powered Data Analytics Job Simulation",
+    name: "Tata – GenAI Powered Data Analytics Job Simulation",
     issuer: "Tata",
     via: "Forage",
     date: "Oct 2025",
     link: "https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_ikDpKDeWiwp6Q3Rh7_1761460557423_completion_certificate.pdf",
-    accent: "#f59e0b"
+    accent: "#f59e0b",
+    category: "AI & Machine Learning",
+    logo: "Tata"
   }
 ];
 
@@ -255,31 +297,41 @@ export const SUPPORTING_CERTS = [
     name: "Introduction to Generative AI",
     issuer: "Google",
     date: "Feb 2024",
-    link: "https://www.cloudskillsboost.google/public_profiles/45352703-3329-4440-9e0a-055d8f908b23/badges/8097686"
+    link: "https://www.cloudskillsboost.google/public_profiles/45352703-3329-4440-9e0a-055d8f908b23/badges/8097686",
+    category: "AI & Machine Learning",
+    logo: "Google"
   },
   {
     name: "Introduction to Ethical Hacking and Computer Networking",
     issuer: "Udemy",
     date: "Jul 2024",
-    link: "https://www.udemy.com/certificate/UC-6df18941-9972-4cba-a5eb-05bc7155994f/"
+    link: "https://www.udemy.com/certificate/UC-6df18941-9972-4cba-a5eb-05bc7155994f/",
+    category: "Cybersecurity",
+    logo: "Udemy"
   },
   {
     name: "Introduction to Front-End Development",
-    issuer: "Meta (Coursera)",
+    issuer: "Meta",
     date: "Nov 2024",
-    link: "https://www.coursera.org/account/accomplishments/records/3NK3QB3F88YZ"
+    link: "https://www.coursera.org/account/accomplishments/records/3NK3QB3F88YZ",
+    category: "Web Development",
+    logo: "Meta"
   },
   {
     name: "Introduction to Back-End Development",
-    issuer: "Meta (Coursera)",
+    issuer: "Meta",
     date: "Nov 2024",
-    link: "https://www.coursera.org/account/accomplishments/records/F1G1V9KB0ZFU"
+    link: "https://www.coursera.org/account/accomplishments/records/F1G1V9KB0ZFU",
+    category: "Web Development",
+    logo: "Meta"
   },
   {
     name: "Programming Foundations: Fundamentals",
     issuer: "LinkedIn Learning",
     date: "May 2024",
-    link: "https://www.linkedin.com/learning/certificates/3b0663b8191318ec22e61d435c840c5233d4aab9f743df589d5c9033baff4fad"
+    link: "https://www.linkedin.com/learning/certificates/3b0663b8191318ec22e61d435c840c5233d4aab9f743df589d5c9033baff4fad",
+    category: "Web Development",
+    logo: "LinkedIn"
   }
 ];
 
